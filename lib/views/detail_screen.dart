@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:myapp/widgets/pokemon_color_type.dart';
 import 'package:myapp/widgets/text_row.dart';
 
-
 class DetailPage extends StatelessWidget {
   final Map<String, dynamic> pokemon;
 
