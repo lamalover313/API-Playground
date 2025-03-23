@@ -49,7 +49,6 @@ class DetailPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(pokemon['name'], style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                            Text("#${pokemon['num']}", style: const TextStyle(fontSize: 18)),
                             Text("${pokemon['type'].join(', ')}", style: const TextStyle(fontSize: 18)),
                           ],
                         ),

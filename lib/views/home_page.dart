@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           final pokemon = pokedex[index];
           final color = PokemonUtils.getTypeColor(pokemon['type'][0]);
+
           return GestureDetector(
             onTap: () => context.push('/detail', extra: pokemon),
             child: AnimatedContainer(
@@ -72,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                 color: color,
                 borderRadius: BorderRadius.circular(15),
               ),
+
               child: Stack(
                 children: [
                   Positioned(
@@ -90,7 +92,15 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           pokemon['name'],
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, shadows: [
+                                            BoxShadow(
+                                                color: Colors.black,
+                                                offset: Offset(0,0),
+                                                spreadRadius: 2.0,
+                                                blurRadius: 15
+                                            )
+                                          ]
+                                        ),
                         ),
                         const SizedBox(height: 5),
                         Container(
@@ -100,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
-                            pokemon['type'][0],
+                            "${pokemon['type'].join(', ')}",
                             style: const TextStyle(color: Colors.white, fontSize: 14),
                           ),
                         ),
