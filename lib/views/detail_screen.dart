@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/widgets/pokemon_color_type.dart';
+import 'package:myapp/widgets/text_row.dart';
 
 
 class DetailPage extends StatelessWidget {
@@ -70,24 +71,30 @@ class DetailPage extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 36, 33, 33),
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              ),
-              child: Column(
-                children: [
-                  Text("Height: ${pokemon['height']}", style: const TextStyle(fontSize: 18)),
-                  Text("Weight: ${pokemon['weight']}", style: const TextStyle(fontSize: 18)),
-                  Text("Type: ${pokemon['type'].join(', ')}", style: const TextStyle(fontSize: 18)),
-                  Text("Weakness: ${pokemon['weaknesses']?.join(', ') ?? 'None'}", style: const TextStyle(fontSize: 18)),
-                  if (pokemon['prev_evolution'] != null)
-                    Text("Prev. Evolution: ${pokemon['prev_evolution'].map((e) => e['name']).join(', ')}", style: const TextStyle(fontSize: 18)),
-                  if (pokemon['next_evolution'] != null)
-                    Text("Next Evolution: ${pokemon['next_evolution'].map((e) => e['name']).join(', ')}", style: const TextStyle(fontSize: 18)),
-                ],
-              ),
-            ),
+                padding: const EdgeInsets.all(16),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 36, 33, 33),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+                ),
+                child: Column(
+                  children: [
+                    DetailRow(label: "Height", value: pokemon['height']),
+                    DetailRow(label: "Weight", value: pokemon['weight']),
+                    DetailRow(label: "Type", value: pokemon['type'].join(', ')),
+                    DetailRow(label: "Weakness", value: pokemon['weaknesses']?.join(', ') ?? 'None'),
+                    if (pokemon['prev_evolution'] != null)
+                      DetailRow(
+                        label: "Prev. Evolution",
+                        value: pokemon['prev_evolution'].map((e) => e['name']).join(', '),
+                      ),
+                    if (pokemon['next_evolution'] != null)
+                      DetailRow(
+                        label: "Next Evolution",
+                        value: pokemon['next_evolution'].map((e) => e['name']).join(', '),
+                      ),
+                  ],
+                ),
+              )
           ),
         ],
       ),
