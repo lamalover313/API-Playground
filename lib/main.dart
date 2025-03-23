@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myapp/views/detail_screen.dart';
+import 'package:myapp/views/detail_page.dart';
 import 'package:myapp/views/home_page.dart';
 
 void main() {
