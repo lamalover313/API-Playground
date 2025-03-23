@@ -81,9 +81,9 @@ class DetailPage extends StatelessWidget {
                   Text("Height: ${pokemon['height']}", style: const TextStyle(fontSize: 18)),
                   Text("Weight: ${pokemon['weight']}", style: const TextStyle(fontSize: 18)),
                   Text("Type: ${pokemon['type'].join(', ')}", style: const TextStyle(fontSize: 18)),
-                  Text("Weaknesses: ${pokemon['weaknesses']?.join(', ') ?? 'None'}", style: const TextStyle(fontSize: 18)),
+                  Text("Weakness: ${pokemon['weaknesses']?.join(', ') ?? 'None'}", style: const TextStyle(fontSize: 18)),
                   if (pokemon['prev_evolution'] != null)
-                    Text("Previous Evolution: ${pokemon['prev_evolution'].map((e) => e['name']).join(', ')}", style: const TextStyle(fontSize: 18)),
+                    Text("Prev. Evolution: ${pokemon['prev_evolution'].map((e) => e['name']).join(', ')}", style: const TextStyle(fontSize: 18)),
                   if (pokemon['next_evolution'] != null)
                     Text("Next Evolution: ${pokemon['next_evolution'].map((e) => e['name']).join(', ')}", style: const TextStyle(fontSize: 18)),
                 ],

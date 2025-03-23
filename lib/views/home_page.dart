@@ -1,13 +1,12 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myapp/widgets/pokemon_color_type.dart';
-
+import 'package:myapp/API/api_provider.dart';
+import 'package:myapp/widgets/pokemon_color_type.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -18,25 +17,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    fetchPokemonData();
+    loadPokemonData();
   }
 
-  Future<void> fetchPokemonData() async {
-    const url = 'https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json';
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        for (var i = 0; i < data['pokemon'].length; i++) {
-          Future.delayed(Duration(milliseconds: 100 * i), () {
-            setState(() {
-              pokedex.add(data['pokemon'][i]);
-            });
-          });
-        }
-      }
-    } catch (e) {
-      print("Error fetching data: $e");
+  void loadPokemonData() async {
+    final data = await PokemonService.fetchPokemonData();
+    for (var i = 0; i < data.length; i++) {
+      Future.delayed(Duration(milliseconds: 100 * i), () {
+        setState(() {
+          pokedex.add(data[i]);
+        });
+      });
     }
   }
 
@@ -61,6 +52,7 @@ class _HomePageState extends State<HomePage> {
       
       body: GridView.builder(
         padding: const EdgeInsets.all(10),
+        
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
